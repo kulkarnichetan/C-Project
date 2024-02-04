@@ -1,0 +1,110 @@
+#include <stdio.h>
+
+#define CANDIDATE_COUNT 4
+
+#define CANDIDATE1 "BJP"
+#define CANDIDATE2 "CONGRESS"
+#define CANDIDATE3 "NCP"
+#define CANDIDATE4 "SHIVSENA"
+
+int votesCount1 = 0, votesCount2 = 0, votesCount3 = 0, votesCount4 = 0, spoiledtvotes = 0;
+
+void castVote() {
+    int age, votingID, choice, enteredVotingID;
+
+    // Age verification
+    printf("\n\n ### Age Verification ###\n");
+    printf("Enter your age: ");
+    scanf("%d", &age);
+
+    if (age < 18) {
+        printf("Sorry, you are not eligible to vote!\n");
+        return;
+    }
+
+    // Generate voting ID by adding 1000 to the age
+    votingID = age + 1000;
+
+    printf("Your Voting ID: %d\n", votingID);
+    printf("Enter your Voting ID to cast your vote: ");
+    scanf("%d", &enteredVotingID);
+
+    if (votingID != enteredVotingID) {
+        printf("Invalid Voting ID. Please try again.\n");
+        return;
+    }
+
+    // Voting process
+    printf("\n\n ### Please choose your Candidate ####\n\n");
+    printf(" 1. %s\n", CANDIDATE1);
+    printf(" 2. %s\n", CANDIDATE2);
+    printf(" 3. %s\n", CANDIDATE3);
+    printf(" 4. %s\n", CANDIDATE4);
+    printf(" 5. None of These\n");
+
+    printf("\n Input your choice (1 - 4) : ");
+    scanf("%d", &choice);
+
+    switch (choice) {
+        case 1: votesCount1++; break;
+        case 2: votesCount2++; break;
+        case 3: votesCount3++; break;
+        case 4: votesCount4++; break;
+        case 5: spoiledtvotes++; break;
+        default: printf("\n Error: Wrong Choice !! Please retry");
+                 //hold the screen
+                 getchar();
+    }
+    printf("\n Thanks for voting!\n");
+}
+
+void votesCount() {
+    printf("\n\n ##### Voting Statistics ####");
+    printf("\n %s - %d\n", CANDIDATE1, votesCount1);
+    printf(" %s - %d\n", CANDIDATE2, votesCount2);
+    printf(" %s - %d\n", CANDIDATE3, votesCount3);
+    printf(" %s - %d\n", CANDIDATE4, votesCount4);
+    printf(" %s - %d\n", "Spoiled Votes", spoiledtvotes);
+}
+
+void getLeadingCandidate() {
+    printf("\n\n  #### Leading Candidate ####\n\n");
+    if (votesCount1 > votesCount2 && votesCount1 > votesCount3 && votesCount1 > votesCount4)
+        printf("[%s]\n", CANDIDATE1);
+    else if (votesCount2 > votesCount3 && votesCount2 > votesCount4 && votesCount2 > votesCount1)
+        printf("[%s]\n", CANDIDATE2);
+    else if (votesCount3 > votesCount4 && votesCount3 > votesCount2 && votesCount3 > votesCount1)
+        printf("[%s]\n", CANDIDATE3);
+    else if (votesCount4 > votesCount1 && votesCount4 > votesCount2 && votesCount4 > votesCount3)
+        printf("[%s]\n", CANDIDATE4);
+    else
+        printf("----- Warning !!! No-win situation----\n");
+}
+
+int main() {
+    int choice;
+
+    do {
+        printf("\n\n ###### Welcome to Election/Voting 2019 #####");
+        printf("\n\n 1. Cast the Vote");
+        printf("\n 2. Find Vote Count");
+        printf("\n 3. Find Leading Candidate");
+        printf("\n 0. Exit");
+
+        printf("\n\n Please enter your choice : ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: castVote(); break;
+            case 2: votesCount(); break;
+            case 3: getLeadingCandidate(); break;
+            case 0: printf("\n Exiting the program. Goodbye!\n"); break;
+            default: printf("\n Error: Invalid Choice\n");
+        }
+    } while (choice != 0);
+
+    //hold the screen
+    getchar();
+
+    return 0;
+}
