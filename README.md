@@ -12,7 +12,7 @@ Real-Life Usage Scenarios:-
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-The advantages of implementing this voting system in C language are numerous, particularly when considering the characteristics and strengths of C. Here are some key advantages:-
+The advantages of implementing this voting system in C language :-
 
 1.C is known for its high performance and efficiency. It provides low-level access to memory and system resources, enabling developers to write highly optimized code.
 
